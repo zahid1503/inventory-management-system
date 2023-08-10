@@ -1,14 +1,11 @@
 package com.pharmIT.inventoryManager.controller;
 
-import com.pharmIT.inventoryManager.request.CategoryRequestDto;
 import com.pharmIT.inventoryManager.request.ProductRequestDto;
-import com.pharmIT.inventoryManager.response.CategoryResponseDto;
 import com.pharmIT.inventoryManager.response.ProductResponseDto;
 import com.pharmIT.inventoryManager.services.IProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,7 +42,7 @@ public class ProductController {
 
     // update existing product
     @PutMapping("/{id}")
-    public ResponseEntity<ProductResponseDto> updateProduct(@PathVariable Long id, @RequestBody ProductRequestDto requestDto){
+    public ResponseEntity<ProductResponseDto> updateProduct(@PathVariable Long id, @RequestBody @Valid ProductRequestDto requestDto){
         ProductResponseDto response = productService.updateProduct(id ,requestDto);
         return ResponseEntity.ok().body(response);
     }
